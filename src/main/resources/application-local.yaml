@@ -1,9 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/zcommerce?schema=core
+    url: jdbc:postgresql://localhost:5432/zcommerce
     username: postgres
     password: mysecretpassword
   jpa:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: core

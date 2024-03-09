@@ -5,9 +5,11 @@ CREATE database zcommerce;
 CREATE schema core;
 
 -- Create categories table
-CREATE TABLE core.categories (
+CREATE TABLE core.product_category (
     id SERIAL PRIMARY KEY,
-    name varchar(1000) NOT NULL
+    name varchar(1000) NOT NULL,
+    created timestamp NOT NULL,
+    updated timestamp NOT NULL
 );
 
 -- Create product table
@@ -20,11 +22,11 @@ CREATE TABLE core.product (
     image_url varchar(255) DEFAULT NULL,
     active boolean DEFAULT true,
     units_in_stock integer DEFAULT NULL,
+    category_id BIGINT NOT NULL,
     created timestamp NOT NULL,
     updated timestamp NOT NULL,
-    category_id BIGINT NOT NULL,
     CONSTRAINT fk_category_id
         FOREIGN KEY(category_id)
-        REFERENCES core.categories(id)
+        REFERENCES core.product_category(id)
         ON DELETE CASCADE
 );
